@@ -27,3 +27,6 @@
 - <a href='https://github.com/winston1214/project/blob/master/Lotto.ipynb'>Lotto Crawling</a> : Practice Data Crawling
 - <a href='https://github.com/winston1214/project/blob/master/kospi200_k10_crawling.ipynb'>KPI200&K10</a> : Practice Crawling & Time Series Model
 
+### Dacon
+- <a href='https://dacon.io/competitions/official/235697/overview/description'>EMNIST(+noise)</a> : MultiClass Classification using EfficientNet(top 25%)
+
