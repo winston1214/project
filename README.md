@@ -19,7 +19,8 @@
 ### Team Project
 - <a href='https://github.com/winston1214/project/tree/master/hospital%20opening%20or%20closing%20forecast'>Prediction of Open or Close</a> : INU team Project
 - <a href='https://github.com/winston1214/project/tree/master/%EC%95%84%EC%9D%B4%EB%94%94%EC%96%B4%20%EA%B8%B0%ED%9A%8D%EC%84%9C'>Idea Planning Document</a> : Incheon Bigdata Idea Contest Team Project
-- <a href='https://github.com/winston1214/project/tree/master/%ED%95%B4%EC%96%91%EC%88%98%EC%82%B0%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EC%95%84%EC%9D%B4%EB%94%94%EC%96%B4%20%EA%B3%B5%EB%AA%A8%EC%A0%84'>Ocean Bigdata Competition</a> : Situational awareness Algorithm for Autonomous ship 
+- <a href='https://github.com/winston1214/project/tree/master/%ED%95%B4%EC%96%91%EC%88%98%EC%82%B0%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EC%95%84%EC%9D%B4%EB%94%94%EC%96%B4%20%EA%B3%B5%EB%AA%A8%EC%A0%84'>Ocean Bigdata Idea Competition</a> : Situational awareness Algorithm for Autonomous ship (with @iryung9 , @YEO1214)
+- <a href='https://github.com/winston1214/project/tree/master/KED'>KED Competition</a> : KED Anaylsis Competition - Main model = KoBert (with @dbxminz, @yoosoobin)
 
 ### Individual Project
 - <a href='https://github.com/winston1214/project/tree/master/Insurance%20fraud%20prediction'>Insurance fraud prediction</a> : My First Project
