@@ -12,6 +12,12 @@
 2. **Only those with keywords in the title** are saved in Excel.
 3. **Naver** crawls the title of the **article, url, and abstract**, while Google crawls only the **title of the article, url**.
 
+## Description
+- If you check **OR** ,  **either word 1 or word 2** in the title to be saved in Excel.
+- If you check **AND** , **both word 1 and word 2** must be in the title to be saved in Excel.
+- If you check **None**, you **don't use the operator**. (Search a word)
+- You can check both naver and google
+
 ## How to use?
 
 **1. Excute crawlingui.py**
@@ -19,17 +25,19 @@
 python crawlingui.py
 ```
  
-<img width="30%" height="30%" src='https://user-images.githubusercontent.com/47775179/119303587-fa983380-bca0-11eb-9ce6-abf8866c4408.png'></img>
+<img src='https://github.com/AICT-CVAI/News_keyword_crawling/blob/master/img/display.png?raw=true'></img>
 
 
 **2. Enter a Keyword**
 
-<img width="30%" height="30%" src='https://user-images.githubusercontent.com/47775179/119303591-fb30ca00-bca0-11eb-9a95-cd242946996c.png'></img>
+<img src='https://github.com/AICT-CVAI/News_keyword_crawling/blob/master/img/check2.png?raw=true'></img>
 
 
-✔ **You can also use Combination Code(ex. +, "")**
+✔ **You can also use Operator Option**
 
-<img width="30%" height="30%" src="https://user-images.githubusercontent.com/47775179/119303585-fa983380-bca0-11eb-9687-bc44ba738c2a.png"></img>
+<img src="https://github.com/AICT-CVAI/News_keyword_crawling/blob/master/img/check1.png?raw=true"></img>
+
+💥**If you use Operator Option, you should seperate words by comma(,)**
 
 **3. Wait until the "save" window pops up.**
 
