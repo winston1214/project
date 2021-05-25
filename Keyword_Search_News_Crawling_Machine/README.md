@@ -2,7 +2,7 @@
 
 - Exe file download
 
-<a href='https://drive.google.com/drive/folders/1LmUSj8yR6vGcB8Bbx2JQcenwc6J06Fni?usp=sharing'>Plz All Downloads</a>(2.3GB..)
+<a href='https://drive.google.com/file/d/1rzjaLD646fLgKVGpQuXMqZuCbaa6oY9F/view?usp=sharing'>Download Link</a>
 
 ## Requirements
  - PyQt5
