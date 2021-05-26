@@ -14,7 +14,7 @@ from kobert.pytorch_kobert import get_pytorch_kobert_model
 import argparse
 from transformers import AdamW
 from transformers.optimization import get_cosine_schedule_with_warmup
-def bert_test(opt)    
+def bert_test(opt):    
     class BERTClassifier(nn.Module):
         def __init__(self,
                      bert,
