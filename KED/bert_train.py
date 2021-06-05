@@ -18,6 +18,49 @@ from kobert.pytorch_kobert import get_pytorch_kobert_model
 
 from transformers import AdamW
 from transformers.optimization import get_cosine_schedule_with_warmup
+class BERTDataset(Dataset):
+    def __init__(self, dataset, sent_idx, label_idx, bert_tokenizer, max_len,
+                 pad, pair):
+        transform = nlp.data.BERTSentenceTransform(
+            bert_tokenizer, max_seq_length=max_len, pad=pad, pair=pair)
+
+        self.sentences = [transform([i[sent_idx]]) for i in dataset]
+        self.labels = [np.int32(i[label_idx]) for i in dataset]
+
+    def __getitem__(self, i):
+        return (self.sentences[i] + (self.labels[i], ))
+
+    def __len__(self):
+        return (len(self.labels))
+class BERTClassifier(nn.Module):
+    def __init__(self,
+                 bert,
+                 hidden_size = 768,
+                 num_classes = opt.classes, # softmax 사용 <- binary일 경우는 2
+                 dr_rate=None,
+                 params=None):
+        super(BERTClassifier, self).__init__()
+        self.bert = bert
+        self.dr_rate = dr_rate
+
+        self.classifier = nn.Linear(hidden_size , num_classes)
+        if dr_rate:
+            self.dropout = nn.Dropout(p=dr_rate)
+
+    def gen_attention_mask(self, token_ids, valid_length):
+        attention_mask = torch.zeros_like(token_ids)
+        for i, v in enumerate(valid_length):
+            attention_mask[i][:v] = 1
+        return attention_mask.float()
+
+    def forward(self, token_ids, valid_length, segment_ids):
+        attention_mask = self.gen_attention_mask(token_ids, valid_length)
+
+        _, pooler = self.bert(input_ids = token_ids, token_type_ids = segment_ids.long(), attention_mask = attention_mask.float().to(token_ids.device))
+        if self.dr_rate:
+            out = self.dropout(pooler)
+        return self.classifier(out)
+
 def bert_train(opt):
     device = torch.device('cuda:{}'.format(opt.device))
 
@@ -31,26 +74,6 @@ def bert_train(opt):
 
     tokenizer = get_tokenizer()
     tok = nlp.data.BERTSPTokenizer(tokenizer, vocab, lower=False)
-
-
-
-
-    class BERTDataset(Dataset):
-        def __init__(self, dataset, sent_idx, label_idx, bert_tokenizer, max_len,
-                     pad, pair):
-            transform = nlp.data.BERTSentenceTransform(
-                bert_tokenizer, max_seq_length=max_len, pad=pad, pair=pair)
-
-            self.sentences = [transform([i[sent_idx]]) for i in dataset]
-            self.labels = [np.int32(i[label_idx]) for i in dataset]
-
-        def __getitem__(self, i):
-            return (self.sentences[i] + (self.labels[i], ))
-
-        def __len__(self):
-            return (len(self.labels))
-
-
     max_len = 256 # 해당 길이를 초과하는 단어에 대해선 bert가 학습하지 않음
     batch_size = opt.batch
     warmup_ratio = 0.1
@@ -69,39 +92,6 @@ def bert_train(opt):
     # pytorch용 DataLoader 사용
     train_dataloader = torch.utils.data.DataLoader(data_train, batch_size=batch_size, num_workers=5)
     # test_dataloader = torch.utils.data.DataLoader(data_test, batch_size=batch_size, num_workers=5)
-
-
-
-    class BERTClassifier(nn.Module):
-        def __init__(self,
-                     bert,
-                     hidden_size = 768,
-                     num_classes = opt.classes, # softmax 사용 <- binary일 경우는 2
-                     dr_rate=None,
-                     params=None):
-            super(BERTClassifier, self).__init__()
-            self.bert = bert
-            self.dr_rate = dr_rate
-
-            self.classifier = nn.Linear(hidden_size , num_classes)
-            if dr_rate:
-                self.dropout = nn.Dropout(p=dr_rate)
-
-        def gen_attention_mask(self, token_ids, valid_length):
-            attention_mask = torch.zeros_like(token_ids)
-            for i, v in enumerate(valid_length):
-                attention_mask[i][:v] = 1
-            return attention_mask.float()
-
-        def forward(self, token_ids, valid_length, segment_ids):
-            attention_mask = self.gen_attention_mask(token_ids, valid_length)
-
-            _, pooler = self.bert(input_ids = token_ids, token_type_ids = segment_ids.long(), attention_mask = attention_mask.float().to(token_ids.device))
-            if self.dr_rate:
-                out = self.dropout(pooler)
-            return self.classifier(out)
-
-
 
     model = BERTClassifier(bertmodel, dr_rate=0.2).to(device)
     # model = torch.load('weights/last_kobert_pytorch_model_big2s.pt')
@@ -176,7 +166,6 @@ if __name__ == '__main__':
     parser.add_argument('--source', type=str, default='train_big.txt', help='source')
     parser.add_argument('--save-weights-name', type=str, default='bert_train.pt', help='save weights name')
     parser.add_argument('--device', type=int, default=0, help='cuda 0 or 1 or ..')
-    parser.add_argument('--classes',type=int,default=21,help='class num')
     parser.add_argument('--batch',type=int,default=64,help='batch-size')
     opt = parser.parse_args()
     bert_train(opt)
