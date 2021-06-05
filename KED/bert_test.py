@@ -18,7 +18,7 @@ class BERTClassifier(nn.Module):
     def __init__(self,
                     bert,
                     hidden_size = 768,
-                    num_classes = 77, # softmax 사용 <- binary일 경우는 2
+                    num_classes = 21, # softmax 사용 <- binary일 경우는 2
                     dr_rate=None,
                     params=None):
         super(BERTClassifier, self).__init__()
@@ -108,7 +108,7 @@ if __name__ == '__main__':
     parser.add_argument('--weights',type=str,default='bert.pt',help='weight_model path')
     parser.add_argument('--save_csv_name', type=str, default='', help='save csv name')
     parser.add_argument('--device', type=int, default=0, help='cuda 0 or 1 or ..')
-    # parser.add_argument('--classes',type=int,default=21,help='class num')
     parser.add_argument('--batch',type=int,default=32,help='batch-size')
     opt = parser.parse_args()
+    
     bert_test(opt)
