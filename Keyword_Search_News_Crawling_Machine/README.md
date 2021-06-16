@@ -1,6 +1,6 @@
 # Keyword Search News Crawling Machine
 
-- Exe file download : <a href='https://drive.google.com/file/d/1rzjaLD646fLgKVGpQuXMqZuCbaa6oY9F/view?usp=sharing'>Download Link</a>
+- Exe file download : <a href='https://drive.google.com/drive/folders/1o08VhX9Ir2MW-QGo8jfsppwTt5tbevYh?usp=sharing'>Download Link</a>
 
 ## Requirements
  - PyQt5
