@@ -6,6 +6,9 @@
 - <a href='https://www.kaggle.com/winston1214/loan-data-simple-analysis'>Loan data</a> : (simple) Visualization & Classification(with Neural Network)
 - <a href='https://www.kaggle.com/winston1214/covid-19-kor-eng-ver'>COVID-19</a> : Visualization(main) & Prophet Model(simple)
 
+### Dacon
+- <a href='https://dacon.io/competitions/official/235697/overview/description'>EMNIST(+noise)</a> : MultiClass Classification using EfficientNet(top 25%)
+- <a href='https://dacon.io/competitions/official/235870/overview/description'>농업 환경 변화에 따른 작물병해 진단</a> : Regnety040 + LSTM (top 6%)
 
 ### Bigdata Internship
 - <a href='https://github.com/winston1214/project/tree/master/Planning%20for%20eldery%20people'>Planning for Eldery People</a> : Silver Zone(Senior protection zone) Optimal Placement(Analytical Ideas Using QGIS)
@@ -28,6 +31,4 @@
 - <a href='https://github.com/winston1214/project/blob/master/Lotto.ipynb'>Lotto Crawling</a> : Practice Data Crawling
 - <a href='https://github.com/winston1214/project/blob/master/kospi200_k10_crawling.ipynb'>KPI200&K10</a> : Practice Crawling & Time Series Model
 
-### Dacon
-- <a href='https://dacon.io/competitions/official/235697/overview/description'>EMNIST(+noise)</a> : MultiClass Classification using EfficientNet(top 25%)
 
